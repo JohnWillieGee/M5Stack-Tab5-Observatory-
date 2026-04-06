@@ -1,0 +1,99 @@
+#pragma once
+// =============================================================================
+//  config.h  —  Tab5 Weather Dashboard
+//
+//  SETUP INSTRUCTIONS:
+//  1. Copy this file to config.h
+//  2. Fill in your credentials and location below
+//  3. Add config.h to .gitignore — never commit real credentials
+//
+//  API signups (all free tier):
+//    WeatherAPI:    https://www.weatherapi.com
+//    AstronomyAPI:  https://astronomyapi.com
+//    BOM Space Wx:  https://sws-data.sws.bom.gov.au/register
+//    USGS Quakes:   No key required
+// =============================================================================
+
+// ── WiFi credentials ──────────────────────────────────────────────────────────
+#define WIFI_SSID   "your_wifi_ssid"
+#define WIFI_PASS   "your_wifi_password"
+
+// ── Tab5 WiFi SDIO2 pins (from schematic) ────────────────────────────────────
+// These are fixed by the Tab5 hardware — do not change.
+#define WIFI_CLK_PIN   12
+#define WIFI_CMD_PIN   13
+#define WIFI_D0_PIN    11
+#define WIFI_D1_PIN    10
+#define WIFI_D2_PIN     9
+#define WIFI_D3_PIN     8
+#define WIFI_RST_PIN   15
+
+// ── WeatherAPI.com ────────────────────────────────────────────────────────────
+// Free account at https://www.weatherapi.com — 1 million calls/month free.
+// Location can be a city name, "lat,lon", or a UK/Canadian postcode.
+#define WEATHER_API_KEY  "your_weatherapi_key_here"
+#define WEATHER_LOCATION "Sydney"       // city name, or "lat,lon"
+#define WEATHER_LANG     "en"           // response language
+
+// ── Timezone (POSIX TZ string) ────────────────────────────────────────────────
+// AEST-10AEDT handles Sydney/Melbourne DST automatically.
+// DST starts 1st Sunday October 02:00, ends 1st Sunday April 03:00.
+//
+//  Other Australian options:
+//    Perth (no DST)    : "AWST-8"
+//    Darwin (no DST)   : "ACST-9:30"
+//    Adelaide (DST)    : "ACST-9:30ACDT,M10.1.0,M4.1.0/3"
+//    Brisbane (no DST) : "AEST-10"
+//
+//  Other common options:
+//    London (BST)      : "GMT0BST,M3.5.0/1,M10.5.0"
+//    New York (EST/EDT): "EST5EDT,M3.2.0,M11.1.0"
+//    Tokyo (no DST)    : "JST-9"
+#define POSIX_TZ   "AEST-10AEDT,M10.1.0,M4.1.0/3"
+
+// NTP server
+#define NTP_SERVER  "pool.ntp.org"
+
+// ── Display & Settings defaults ──────────────────────────────────────────────
+// These are factory defaults — user can adjust via the Settings screen.
+// Values are stored in Preferences (NVS flash) and persist across reboots.
+#define DEFAULT_BRIGHTNESS       180   // 0-255  backlight level
+#define DEFAULT_TIMEOUT_SEC      300   // screen timeout seconds (0 = never)
+#define DEFAULT_DIM_BEFORE_SLEEP   1   // 1 = dim 30s before blank; 0 = instant
+#define DEFAULT_WX_INTERVAL_SEC  900   // weather fetch interval (15 min)
+#define DEFAULT_SW_INTERVAL_SEC  900   // space weather fetch interval (15 min)
+#define DEFAULT_WAKE_TO_CLOCK      0   // 0 = last screen on wake; 1 = clock
+
+// ── BOM Tide Predictions ─────────────────────────────────────────────────────
+// No API key required. Tides are pre-generated and stored on SD card.
+// Fort Denison (NSW_TP007) is the primary Sydney Harbour gauge.
+// Find other station codes at: https://www.bom.gov.au/australia/tides/
+// The tides screen reads /tides.csv from the SD card root.
+// See README for how to generate the tides CSV for your station.
+#define BOM_TIDE_STATION   "NSW_TP007"   // Fort Denison, Sydney Harbour
+#define BOM_TIDE_REGION    "NSW"
+#define BOM_TIDE_LAT       -33.8568      // your tide gauge latitude
+#define BOM_TIDE_LON        151.2253     // your tide gauge longitude
+
+// ── BOM Space Weather API ─────────────────────────────────────────────────────
+// Free registration at https://sws-data.sws.bom.gov.au/register
+// Provides K-index, A-index, Dst index, and aurora forecasts.
+#define BOM_SW_API_KEY  "your_bom_space_weather_api_key"
+
+// ── AstronomyAPI.com ──────────────────────────────────────────────────────────
+// https://astronomyapi.com — free tier available.
+// Authentication uses HTTP Basic Auth with base64(appId:appSecret).
+// Generate your base64 string at: https://www.base64encode.org
+// Format to encode: "your_app_id:your_app_secret"
+#define ASTRO_API_AUTH  "your_base64_encoded_appid_and_secret"
+
+// Observer location for astronomy calculations
+// Should match your weather location for accurate planet rise/set times.
+#define ASTRO_LAT        "-33.8568"    // observer latitude  (string, decimal degrees)
+#define ASTRO_LON        "151.2253"    // observer longitude (string, decimal degrees)
+#define ASTRO_ELEVATION  "0"           // observer elevation in metres
+
+// ── ENV Pro BME688 I2C address ────────────────────────────────────────────────
+// The M5Stack ENV Pro Unit uses the BME688 at 0x77 (hardware fixed).
+// Only change if using a different breakout with SDO pulled low (0x76).
+#define BME688_I2C_ADDR  0x77
