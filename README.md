@@ -56,7 +56,6 @@ A feature-rich, data-dense weather and environment dashboard for the **M5Stack T
 - **LVGL 8.4** — UI framework
 - **ArduinoJson v6** — JSON parsing (DynamicJsonDocument API)
 - **Bosch BME68x-Sensor-API** — raw BME688 driver
-- **M5Stack Board 3.2.6**
 
 ### APIs Used (all free tier)
 | API | Data | Refresh |
@@ -115,7 +114,7 @@ The SD card must initialise **before** WiFi — the SDMMC/WiFi bus conflict on E
 - **LVGL tick:** Use fixed `lv_tick_inc(5)` + `delay(5)` pattern
 - **TZ env var** must be re-applied after `configTime()` — ESP32 resets it during NTP sync
 - **setExtOutput() with masks** crashes the Tab5 power expander — avoid
-- **Board package:** v3.2.x has a known WiFi/SDIO crash bug; v2.1.4 is stable if issues arise
+- **Board package:** v3.2.6 has a known WiFi/SDIO crash bug; v2.1.4 is stable if issues arise
 
 ### BME688 Sensor
 - Forced mode: call `fetchData()` then `getData()` — do not use continuous mode
@@ -173,9 +172,9 @@ Copy `config.h.example` to `config.h` and fill in:
 ## Building
 
 1. Install Arduino IDE 2.x
-2. Add M5Stack board package: `https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_index.json`
+2. Add M5Stack board (3.2.6) package: `https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_index.json`
 3. Select board: **M5Stack Tab5** (or ESP32P4 Dev Module if Tab5 not listed)
-4. Install libraries via Library Manager: M5Unified, M5GFX, LVGL (8.x), ArduinoJson (6.x), Bosch BME68x-Sensor-API
+4. Install libraries via Library Manager: M5Unified, M5GFX, LVGL (8.4), ArduinoJson (6.x), Bosch BME68x-Sensor-API
 5. Configure LVGL: copy `lv_conf.h` to your Arduino libraries folder
 6. Set partition scheme: **16MB Flash (3MB APP/9.9MB FATFS)** or similar with OTA
 7. Flash size: **16MB**, PSRAM: **OPI PSRAM**
