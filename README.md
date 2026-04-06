@@ -2,6 +2,8 @@
 
 A feature-rich, data-dense weather and environment dashboard for the **M5Stack Tab5** (ESP32-P4), built with Arduino and LVGL 8.x. Fourteen swipeable screens cover everything from live indoor air quality to real-time earthquake activity, astronomical data, tides, and space weather — all in a polished dark-themed UI on the Tab5's 1280×720 MIPI-DSI display.
 
+https://youtu.be/P9kC9wAIuWU?si=Une-ShOrxgz4CorA
+
 ![Tab5 Observatory](docs/screenshot_clock.jpg)
 
 ---
